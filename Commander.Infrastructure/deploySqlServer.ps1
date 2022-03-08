@@ -16,7 +16,7 @@ catch
 }
 try 
 {
-    az sql server create -l ukwest -g commander-sql-rg -n commanderServer-02 -u chris -p $($env:Password)
+    az sql server create -l ukwest -g commander-sql-rg -n commanderServer-03 -u chris -p $($env:Password)
 }
 catch 
 {
@@ -24,7 +24,7 @@ catch
 }
 try 
 {
-    az sql server create -l uksouth -g commander-sql-rg -n commanderServer-01 -u chris -p $($env:Password)
+    az sql server create -l uksouth -g commander-sql-rg -n commanderServer-04 -u chris -p $($env:Password)
 }
 catch 
 {
@@ -32,7 +32,7 @@ catch
 }
 try 
 {
-    az sql db create -g commander-sql-rg -s commanderServer-01 -n Commander --service-objective S0
+    az sql db create -g commander-sql-rg -s commanderServer-03 -n Commander --service-objective S0
 }
 catch
 {
@@ -40,7 +40,7 @@ catch
 }
 try 
 {
-    az sql db create -g commander-sql-rg -s commanderServer-02 -n Commander --service-objective S0
+    az sql db create -g commander-sql-rg -s commanderServer-04 -n Commander --service-objective S0
 }
 catch 
 {
@@ -48,7 +48,7 @@ catch
 }
 try 
 {
-    az sql failover-group create --name commanderfailover --partner-server commanderServer-02 --resource-group commander-sql-rg --server commanderServer-01
+    az sql failover-group create --name commanderfailover --partner-server commanderServer-04 --resource-group commander-sql-rg --server commanderServer-03
 }
 catch
 {
