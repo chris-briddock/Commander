@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj": {}
+    "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj": {
+    "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj",
+        "projectUniqueName": "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj",
         "projectName": "Commander",
-        "projectPath": "c:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj",
+        "projectPath": "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj",
         "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\obj\\",
+        "outputPath": "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,7 +42,7 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[6.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
