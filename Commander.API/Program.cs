@@ -1,6 +1,7 @@
 using Commander.API.Data;
 using Commander.API.Models;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

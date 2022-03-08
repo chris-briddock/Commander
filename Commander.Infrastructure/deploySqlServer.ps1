@@ -1,7 +1,56 @@
-az login --use-device-code
-az group create -l westus3 -n commander-sql-rg
-az sql server create -l westus3 -g commander-sql-rg -n commanderServer-01 -u chris -p $($env:Password)
-az sql server create -l eastus -g commander--sql-rg -n commanderServer-02 -u chris -p $($env:Password)
-az sql db create -g commander-sql-rg -s commanderServer-01 -n Commander --service-objective S0
-az sql db create -g commander-sql-rg -s commanderServer-02 -n Commander --service-objective S0
-az sql failover-group create --name commanderFailover --partner-server commanderServer-02 --resource-group commander-sql-rg --server commanderServer-01
+try 
+{
+    az login --use-device-code
+}
+catch 
+{
+    Write-Error "Failed to login to Azure."
+}
+try 
+{
+    az group create -l westus3 -n commander-sql-rg
+}
+catch
+{
+    Write-Error "Faild to create resource group."
+}
+try 
+{
+    az sql server create -l eastus -g commander--sql-rg -n commanderServer-02 -u chris -p "$($env:Password)"
+}
+catch 
+{
+    Write-Error "Failed to create SQL server for Server 2"
+}
+try 
+{
+    az sql server create -l eastus -g commander--sql-rg -n commanderServer-01 -u chris -p "$($env:Password)"
+}
+catch 
+{
+    Write-Error "Failed to create SQL server for Server 1"
+}
+try 
+{
+    az sql db create -g commander-sql-rg -s commanderServer-01 -n Commander --service-objective S0
+}
+catch
+{
+    Write-Error "Failed to create database for Server 1"
+}
+try 
+{
+    az sql db create -g commander-sql-rg -s commanderServer-02 -n Commander --service-objective S0
+}
+catch 
+{
+    Write-Error "Failed to create database on Server 2"
+}
+try 
+{
+    az sql failover-group create --name commanderFailover --partner-server commanderServer-02 --resource-group commander-sql-rg --server commanderServer-01
+}
+catch
+{
+    Write-Error "Failed to create failover group from Server 1 to Server 2"
+}
