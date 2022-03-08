@@ -48,7 +48,7 @@ catch
 }
 try 
 {
-    az sql failover-group create --name commanderFailover --partner-server commanderServer-02 --resource-group commander-sql-rg --server commanderServer-01
+    az sql failover-group create --name commanderfailover --partner-server commanderServer-02 --resource-group commander-sql-rg --server commanderServer-01
 }
 catch
 {
