@@ -16,11 +16,7 @@ catch
 }
 try 
 {
-<<<<<<< HEAD
-    az sql server create -l ukwest -g commander--sql-rg -n commanderServer-02 -u chris -p "$($env:Password)"
-=======
-    az sql server create -l westus2 -g commander-sql-rg -n commanderServer-02 -u chris -p "$($env:Password)"
->>>>>>> afa0cff094ba9a82d27b5f4de6b8a23e703f68c1
+    az sql server create -l ukwest -g commander-sql-rg -n commanderServer-02 -u chris -p $($env:Password)
 }
 catch 
 {
@@ -28,11 +24,7 @@ catch
 }
 try 
 {
-<<<<<<< HEAD
-    az sql server create -l uksouth -g commander--sql-rg -n commanderServer-01 -u chris -p "$($env:Password)"
-=======
-    az sql server create -l eastus -g commander-sql-rg -n commanderServer-01 -u chris -p "$($env:Password)"
->>>>>>> afa0cff094ba9a82d27b5f4de6b8a23e703f68c1
+    az sql server create -l uksouth -g commander-sql-rg -n commanderServer-01 -u chris -p $($env:Password)
 }
 catch 
 {
