@@ -8,22 +8,43 @@ namespace Commander.API.Controllers
     public class CommandsController : ControllerBase
     {
         private readonly IGenericRepo<Command> _repo;
-        public CommandsController(IGenericRepo<Command> commandRepo)
+        private ILogger _logger;
+        public CommandsController(IGenericRepo<Command> commandRepo, ILogger logger)
         {
             _repo = commandRepo;
+            _logger = logger;
         }
         
         [HttpGet("{id}")]
         public ActionResult<Command> GetCommand(int Id) 
         {
-            var command = _repo.Read(Id);
-            return Ok(command);
+            Command command = (Command)null;
+            try 
+            {
+                 command = _repo.Read(Id);
+                 return Ok(command);
+            }
+            catch 
+            {
+                _logger.LogError("Error in GetCommand, failed to read from the database.");
+                return NoContent();
+                
+            }    
         }
         [HttpGet]
         public ActionResult<IEnumerable<Command>> GetCommands()
         {
-            var commands = _repo.ReadAll();
-            return Ok(commands);
+            IEnumerable<Command> commands;
+            try 
+            {
+                commands = _repo.ReadAll();
+                return Ok(commands);
+            }
+            catch 
+            {
+                _logger.LogError("Error in GetCommands, failed to read from the database.");
+                return NoContent();
+            }               
         }
         [HttpPut]
         public ActionResult<Command> PutCommand([FromBody]Command command)
@@ -32,18 +53,25 @@ namespace Commander.API.Controllers
             {
                 throw new ArgumentNullException();
             }
+            try 
+            {
+                _repo.Update(command);
 
-            _repo.Update(command);
-            if (_repo.SaveChanges() == true)
-            {
-                return Ok();
+                if (_repo.SaveChanges() == true)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return NoContent();
+                }
             }
-            else
+            catch  
             {
+                _logger.LogError("Error PutCommand, failed to update the database.");
                 return NoContent();
             }
-        }
-        
+        }     
         [HttpPost]
         public ActionResult<Command> PostCommand([FromBody]Command command)
         {
@@ -64,7 +92,6 @@ namespace Commander.API.Controllers
             {
                 return NoContent();
             }
-        
         }
     }
 }
