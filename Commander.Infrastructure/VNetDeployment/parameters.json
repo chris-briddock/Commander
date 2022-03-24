@@ -1,0 +1,83 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westus3"
+        },
+        "extendedLocation": {
+            "value": {}
+        },
+        "virtualNetworkName": {
+            "value": "application-vnet-01"
+        },
+        "resourceGroup": {
+            "value": "commander-sql-rg"
+        },
+        "addressSpaces": {
+            "value": [
+                "10.0.0.0/16"
+            ]
+        },
+        "ipv6Enabled": {
+            "value": false
+        },
+        "subnetCount": {
+            "value": 6
+        },
+        "subnet0_name": {
+            "value": "AzureBastionSubnet"
+        },
+        "subnet0_addressRange": {
+            "value": "10.0.1.0/27"
+        },
+        "subnet1_name": {
+            "value": "SqlServerSubnet"
+        },
+        "subnet1_addressRange": {
+            "value": "10.0.2.0/24"
+        },
+        "subnet2_name": {
+            "value": "ApiSubnet"
+        },
+        "subnet2_addressRange": {
+            "value": "10.0.3.0/24"
+        },
+        "subnet3_name": {
+            "value": "FrontendSubnet"
+        },
+        "subnet3_addressRange": {
+            "value": "10.0.4.0/24"
+        },
+        "subnet4_name": {
+            "value": "VPNSubnet"
+        },
+        "subnet4_addressRange": {
+            "value": "10.0.5.0/29"
+        },
+        "subnet5_name": {
+            "value": "RDSSubnet"
+        },
+        "subnet5_addressRange": {
+            "value": "10.0.6.0/24"
+        },
+        "ddosProtectionPlanEnabled": {
+            "value": false
+        },
+        "firewallEnabled": {
+            "value": true
+        },
+        "bastionEnabled": {
+            "value": false
+        },
+        "firewallName": {
+            "value": "Firewall-01"
+        },
+        "firewallSubnetAddressSpace": {
+            "value": "10.0.7.0/26"
+        },
+        "publicIpAddress": {
+            "value": "Firewall-ip-01"
+        }
+    }
+}
