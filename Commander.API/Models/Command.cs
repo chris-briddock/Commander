@@ -1,21 +1,15 @@
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Commander.API.Models
 {
-    public class Command : BaseModel
+    public partial class Command : BaseModel
     {
-        [DisallowNull]
-        [Required]
-        public string ?TheCommand { get; set; }
-        [DisallowNull]
-        [Required]
-        public string ?HelpText { get; set; }
-        [DisallowNull]
-        [Required]
-        public string ?Description { get; set; }
-        [DisallowNull]
-        [Required]
-        public string ?Platform { get; set; }
+        //public Guid Id { get; set; }
+        public string OperatingSystem { get; set; } = null!;
+        public string RuntimeEnvironment { get; set; } = null!;
+        public string CommandString { get; set; } = null!;
+        public string Parameters { get; set; } = null!;
+        public string ParametersSummary { get; set; } = null!;
     }
 }

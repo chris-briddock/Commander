@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj": {}
+    "C:\\Development\\Commander\\Commander.API\\Commander.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj": {
+    "C:\\Development\\Commander\\Commander.API\\Commander.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj",
+        "projectUniqueName": "C:\\Development\\Commander\\Commander.API\\Commander.csproj",
         "projectName": "Commander",
-        "projectPath": "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\Commander.csproj",
-        "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Chris\\Desktop\\Commander\\Commander\\Commander.API\\obj\\",
+        "projectPath": "C:\\Development\\Commander\\Commander.API\\Commander.csproj",
+        "packagesPath": "C:\\Users\\cbriddock\\.nuget\\packages\\",
+        "outputPath": "C:\\Development\\Commander\\Commander.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\cbriddock\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

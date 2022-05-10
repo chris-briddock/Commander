@@ -5,29 +5,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Commander.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class CommandsController : ControllerBase
     {
-        private readonly IGenericRepo<Command> _repo;
+        private readonly ICommandRepo _repo;
         private ILogger _logger;
-        public CommandsController(IGenericRepo<Command> commandRepo, ILogger logger)
+        public CommandsController(ICommandRepo commandRepo, ILogger<CommandsController> logger)
         {
             _repo = commandRepo;
             _logger = logger;
         }
         
         [HttpGet("{id}")]
-        public ActionResult<Command> GetCommand(int Id) 
+        public ActionResult<Command> GetCommand(Guid Id) 
         {
-            Command command = (Command)null;
             try 
             {
-                 command = _repo.Read(Id);
+                 Command command =  _repo.Read(Id);
                  return Ok(command);
             }
             catch 
             {
                 _logger.LogError("Error in GetCommand, failed to read from the database.");
-                return NoContent();
+                return NotFound();
                 
             }    
         }
@@ -51,38 +52,23 @@ namespace Commander.API.Controllers
         {
             if (command == null)
             {
-                throw new ArgumentNullException();
+               return BadRequest();
             }
-            try 
-            {
                 _repo.Update(command);
-
                 if (_repo.SaveChanges() == true)
                 {
                     return Ok();
                 }
                 else
                 {
-                    return NoContent();
+                    _logger.LogError("Error in PutCommand, failed to update the database.");
+                    return BadRequest();
                 }
-            }
-            catch  
-            {
-                _logger.LogError("Error PutCommand, failed to update the database.");
-                return NoContent();
-            }
         }     
         [HttpPost]
         public ActionResult<Command> PostCommand([FromBody]Command command)
         {
-            if (command == null)
-            {
-                throw new ArgumentNullException();
-            }
-            else
-            {
-                _repo.Create(command);
-            }
+            _repo.Create(command);
 
             if (_repo.SaveChanges() == true)
             {
@@ -91,6 +77,24 @@ namespace Commander.API.Controllers
             else
             {
                 return NoContent();
+            }
+        }
+        [HttpDelete]
+        public ActionResult<Command> DeleteCommand([FromBody]Command command) 
+        {
+            if (command == null) 
+            {
+                return BadRequest();
+            }
+            _repo.Delete(command);
+
+            if (_repo.SaveChanges() == true) 
+            {
+                return Ok();  
+            }
+            else 
+            {
+                return BadRequest(); 
             }
         }
     }

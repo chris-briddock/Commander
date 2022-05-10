@@ -1,12 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Commander.API.Models
 {
     public class BaseModel
     {
-        [DisallowNull]
-        [Required, MinLength(1)]
-        public int Id { get; set; }
+        [DisallowNull, Required, Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
     }
 }
