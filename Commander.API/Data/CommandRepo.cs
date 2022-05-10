@@ -24,7 +24,7 @@ namespace Commander.API.Data
         }
         public Command Read(Guid Id)
         {
-            return _context.Commands.Where(c => c.Id == Id).FirstOrDefault();
+            return _context.Commands.Where(c => c.Id == Id).First();
             
         }
         public void Update(Command command)
