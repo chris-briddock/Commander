@@ -10,7 +10,5 @@ namespace Commander.API.Data
         Command Read(Guid Id);
         void Update(Command command);
         void Delete(Command command);
-
-        
     }
 }

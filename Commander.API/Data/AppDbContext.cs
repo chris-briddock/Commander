@@ -28,12 +28,6 @@ namespace Commander.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Command>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-            });
-             modelBuilder.Entity<Command>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
-
             OnModelCreatingPartial(modelBuilder);
         }
 

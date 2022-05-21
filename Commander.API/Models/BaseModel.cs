@@ -6,7 +6,6 @@ namespace Commander.API.Models
 {
     public class BaseModel
     {
-        [DisallowNull, Required, Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
     }
