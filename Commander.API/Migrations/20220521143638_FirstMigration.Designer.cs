@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Commander.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220508182915_PrimaryKeyGuid")]
-    partial class PrimaryKeyGuid
+    [Migration("20220521143638_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,8 @@ namespace Commander.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("CommandString")
                         .IsRequired()

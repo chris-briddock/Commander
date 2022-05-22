@@ -35,9 +35,9 @@ namespace Commander.API.Data
         {
             return (_context.SaveChanges() >= 0);
         }
-        public void Delete(Command command) 
+        public void Delete(Guid Id) 
         {
-            _context.Remove(command);
+            _context.Remove(Id);
         }
     }
 }

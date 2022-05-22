@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Commander.Migrations
 {
-    public partial class PrimaryKeyGuid : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace Commander.Migrations
                 name: "Commands",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     OperatingSystem = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RuntimeEnvironment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CommandString = table.Column<string>(type: "nvarchar(max)", nullable: false),

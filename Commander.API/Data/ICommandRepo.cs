@@ -9,6 +9,6 @@ namespace Commander.API.Data
         void Create(Command command);
         Command Read(Guid Id);
         void Update(Command command);
-        void Delete(Command command);
+        void Delete(Guid Id);
     }
 }

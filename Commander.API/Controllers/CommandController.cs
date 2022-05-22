@@ -16,81 +16,81 @@ namespace Commander.API.Controllers
             _repo = commandRepo;
             _logger = logger;
         }
-        
+
         [HttpGet("{id}")]
-        public ActionResult<Command> GetCommand(Guid Id) 
+        public ActionResult<Command> GetCommand(Guid Id)
         {
-            try 
+            try
             {
-                 Command command =  _repo.Read(Id);
-                 return Ok(command);
+                Command command = _repo.Read(Id);
+                return Ok(command);
             }
-            catch 
+            catch
             {
                 _logger.LogError("Error in GetCommand, failed to read from the database.");
                 return NotFound();
-                
-            }    
+
+            }
         }
         [HttpGet]
         public ActionResult<IEnumerable<Command>> GetCommands()
         {
             IEnumerable<Command> commands;
-            try 
+            try
             {
                 commands = _repo.ReadAll();
                 return Ok(commands);
             }
-            catch 
+            catch
             {
                 _logger.LogError("Error in GetCommands, failed to read from the database.");
                 return NoContent();
-            }               
+            }
         }
         [HttpPut]
-        public ActionResult<Command> PutCommand([FromBody]Command command)
+        public ActionResult<Command> PutCommand([FromBody] Command command)
         {
             if (command == null)
             {
-               return BadRequest();
+                return BadRequest();
             }
-                _repo.Update(command);
-                if (_repo.SaveChanges() == true)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    _logger.LogError("Error in PutCommand, failed to update the database.");
-                    return BadRequest();
-                }
-        }     
-        [HttpPost]
-        public ActionResult<Command> PostCommand([FromBody]Command command)
-        {
-            _repo.Create(command);
-
+            _repo.Update(command);
             if (_repo.SaveChanges() == true)
             {
                 return Ok();
             }
             else
             {
-                return NoContent();
+                _logger.LogError("Error in PutCommand, failed to update the database.");
+                return BadRequest();
             }
         }
-        [HttpDelete]
-        public ActionResult<Command> DeleteCommand([FromBody]Command command) 
+        [HttpPost]
+        public ActionResult<Command> PostCommand([FromBody] Command command)
         {
-            if (command == null) 
+            _repo.Create(command);
+
+            if (_repo.SaveChanges() == true)
+            {
+                return CreatedAtAction(nameof(GetCommand), new { id = command.Id }, command);
+            }
+            else
             {
                 return BadRequest();
             }
-            _repo.Delete(command);
+        }
+        [HttpDelete("{id}")]
+        public ActionResult<Command> DeleteCommand([FromBody]Guid Id) 
+        {
+            if (Id == Guid.Empty) 
+            {
+                return BadRequest();
+            }
+            _repo.Delete(Id);
 
             if (_repo.SaveChanges() == true) 
             {
-                return Ok();  
+                return NoContent();  
             }
             else 
             {
