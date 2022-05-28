@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.AspNetCore.Mvc;
-using Commander.API.Models;
-using Commander.API.Data;
-using Commander.API.Controllers;
+using Commander.API.Commands.Models;
+using Commander.API.Commands.Data;
+using Commander.API.Commands.Controllers;
 using Xunit;
 using Moq;
+using System.Threading.Tasks;
 
-namespace Commander.API.UnitTests
+namespace Commander.API.Commands.UnitTests
 {
     
     public class CommandUnitTests
@@ -114,6 +115,34 @@ namespace Commander.API.UnitTests
 
             //assert
             Assert.IsType<NoContentResult>(result);
+        }
+        [Fact]
+        public void GetAllAsyncShouldReturn200Ok() 
+        {
+            // arrange   
+            _commandRepo.Setup(x => x.ReadAllAsync());
+            var controller = new CommandsController(_commandRepo.Object,_loggger.Object);
+            // act
+            var actionResult = controller.GetCommandsAsync();
+            ActionResult<Command> result = actionResult.Result;
+            var resultTask = result.Result as OkObjectResult;
+            //assert
+            Assert.IsType<OkObjectResult>(resultTask);
+        }
+        [Fact]
+        public void GetCommandAsyncShouldReturn200Ok()
+        {
+            //arrange
+            Guid guid = GetMockData().First().Id;
+            _commandRepo.Setup(c => c.ReadAsync(guid));
+            var controller = new CommandsController(_commandRepo.Object, _loggger.Object);
+            // act
+            var actionResult = controller.GetCommandAsync(guid);
+            ActionResult<Command> result = actionResult.Result;
+            var resultTask = result.Result as OkObjectResult;
+            // assert
+            Assert.IsType<OkObjectResult>(resultTask);
+
         }
         public IEnumerable<Command> GetMockData()
         {

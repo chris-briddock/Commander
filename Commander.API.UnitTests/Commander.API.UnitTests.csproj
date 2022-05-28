@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Commander.API\Commander.API.csproj" />
+    <ProjectReference Include="..\Commander.API.Commands\Commander.API.Commands.csproj" />
   </ItemGroup>
 
 </Project>
